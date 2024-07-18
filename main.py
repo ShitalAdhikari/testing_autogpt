@@ -28,4 +28,7 @@ create_ui()
 app.mount("/", nicegui_app)
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    try:
+        uvicorn.run(app, host="0.0.0.0", port=8000)
+    except Exception as e:
+        print(f"An error occurred while starting the server: {e}")

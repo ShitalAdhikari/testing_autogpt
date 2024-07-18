@@ -4,14 +4,15 @@ This project implements a simple login page using NiceGUI for the frontend and F
 
 ## Dependencies
 
-- FastAPI (>=0.68.0, <0.100.0)
-- Uvicorn (>=0.15.0, <0.20.0)
-- NiceGUI (latest version)
-- Pydantic (>=1.8.2, <2.0.0)
-- bcrypt (>=3.2.0, <4.0.0)
+- FastAPI (>=0.68.0, <0.103.0)
+- Uvicorn (>=0.15.0, <0.24.0)
+- NiceGUI (1.3.8)
+- Pydantic (>=2.0.0, <3.0.0)
+- bcrypt (>=3.2.0, <4.1.0)
 - python-jose (3.3.0)
-- httpx (>=0.23.0, <0.25.0)
+- httpx (>=0.23.0, <0.26.0)
 - python-multipart (0.0.5)
+- python-dotenv (1.0.0)
 
 ## Installation
 
@@ -32,9 +33,33 @@ This project implements a simple login page using NiceGUI for the frontend and F
    pip install -r requirements.txt
    ```
 
+4. Create a `.env` file in the project root and add the following:
+   ```
+   SECRET_KEY=your_secret_key_here
+   ```
+   Replace `your_secret_key_here` with a secure random string.
+
 ## Running the Application
 
-To run the application, use the following command:
+### Development Setup
+
+For development, you can run the frontend and backend separately:
+
+1. Run the backend:
+   ```
+   python backend.py
+   ```
+   The backend API will be available at `http://localhost:8000`.
+
+2. In a new terminal, run the frontend:
+   ```
+   python frontend.py
+   ```
+   The frontend will be available at `http://localhost:8080`.
+
+### Production Setup
+
+To run the full application with both frontend and backend combined:
 
 ```
 python main.py
@@ -64,6 +89,7 @@ The frontend is a simple login page created with NiceGUI. It communicates with t
 - Passwords are hashed using bcrypt before storing
 - JWT tokens are used for authentication
 - CORS is enabled to allow frontend-backend communication
+- Environment variables are used for sensitive information
 
 ## Future Improvements
 
