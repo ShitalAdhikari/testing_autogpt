@@ -5,7 +5,7 @@ This project implements a simple login page using NiceGUI for the frontend and F
 ## Dependencies
 
 - FastAPI (0.95.2)
-- Uvicorn (0.22.0)
+- Uvicorn (0.23.0)
 - NiceGUI (1.3.3)
 - Pydantic (1.10.9)
 - bcrypt (4.0.1)
@@ -84,6 +84,10 @@ The frontend is a simple login page created with NiceGUI. It communicates with t
 - JWT tokens are used for authentication
 - CORS is enabled to allow frontend-backend communication
 
+## Known Issues
+
+There are some deprecation warnings related to the `vbuild` package, which is a dependency of NiceGUI. These warnings are due to the use of `pkgutil.find_loader`, which is deprecated in Python 3.12+. We are waiting for an update from the `vbuild` package maintainers to address this issue. In the meantime, these warnings do not affect the functionality of the application.
+
 ## Future Improvements
 
 - Add email verification for new users
@@ -92,6 +96,7 @@ The frontend is a simple login page created with NiceGUI. It communicates with t
 - Replace in-memory user storage with a database
 - Implement refresh tokens for better security
 - Add input validation on the frontend
+- Update dependencies to resolve deprecation warnings
 
 ## Contributing
 

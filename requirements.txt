@@ -7,3 +7,4 @@ python-jose==3.3.0
 httpx==0.24.1
 python-multipart==0.0.6
 pyjwt==2.6.0
+vbuild==0.8.1
