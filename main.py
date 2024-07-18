@@ -1,50 +1,31 @@
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+import uvicorn
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from nicegui import ui, app as nicegui_app
 
+from backend import app as backend_app
+from frontend import create_ui
+
+# Combine FastAPI and NiceGUI
 app = FastAPI()
 
-class Item(BaseModel):
-    id: int
-    name: str
-    description: str
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 
-items = {}
+# Mount the backend app
+app.mount("/api", backend_app)
 
-@app.post("/items/")
-async def create_item(item: Item):
-    if item.id in items:
-        raise HTTPException(status_code=400, detail="Item already exists")
-    items[item.id] = item
-    return item
+# Create the frontend UI
+create_ui()
 
-@app.get("/items/{item_id}")
-async def read_item(item_id: int):
-    if item_id not in items:
-        raise HTTPException(status_code=404, detail="Item not found")
-    return items[item_id]
-
-@app.get("/items/")
-async def read_all_items():
-    return list(items.values())
-
-@app.put("/items/{item_id}")
-async def update_item(item_id: int, item: Item):
-    if item_id not in items:
-        raise HTTPException(status_code=404, detail="Item not found")
-    items[item_id] = item
-    return item
-
-@app.delete("/items/{item_id}")
-async def delete_item(item_id: int):
-    if item_id not in items:
-        raise HTTPException(status_code=404, detail="Item not found")
-    del items[item_id]
-    return {"message": "Item deleted successfully"}
-
-@app.get("/")
-async def root():
-    return {"message": "Welcome to the FastAPI CRUD API"}
+# Mount the NiceGUI app
+app.mount("/", nicegui_app)
 
 if __name__ == "__main__":
-    import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -1,23 +1,35 @@
-# FastAPI CRUD API
+# FastAPI and NiceGUI Login Application
 
-This project implements a simple CRUD (Create, Read, Update, Delete) API using FastAPI. It provides endpoints to manage items with an in-memory database.
+This project implements a simple login page using NiceGUI for the frontend and FastAPI for the backend. It provides a secure authentication system with JWT tokens.
 
 ## Dependencies
 
 - FastAPI
 - Uvicorn
+- NiceGUI
+- Pydantic
+- bcrypt
+- python-jose
+- httpx
+- python-multipart
 
 ## Installation
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/fastapi-crud-api.git
-   cd fastapi-crud-api
+   git clone https://github.com/yourusername/fastapi-nicegui-login.git
+   cd fastapi-nicegui-login
    ```
 
-2. Install the required dependencies:
+2. Create a virtual environment and activate it:
    ```
-   pip install fastapi uvicorn
+   python -m venv venv
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   ```
+
+3. Install the required dependencies:
+   ```
+   pip install -r requirements.txt
    ```
 
 ## Running the Application
@@ -28,77 +40,44 @@ To run the application, use the following command:
 python main.py
 ```
 
-The API will be available at `http://localhost:8000`.
+The application will be available at `http://localhost:8000`.
+
+## Features
+
+- User registration
+- User login with JWT token authentication
+- Secure password hashing
+- Simple and intuitive UI using NiceGUI
 
 ## API Endpoints
 
-### Root Endpoint
+- **POST /api/register** - Register a new user
+- **POST /api/token** - Login and receive a JWT token
+- **GET /api/users/me** - Get current user information (protected route)
 
-- **GET /** - Welcome message
-  - Response: `{"message": "Welcome to the FastAPI CRUD API"}`
+## Frontend
 
-### Item Endpoints
+The frontend is a simple login page created with NiceGUI. It communicates with the backend API to authenticate users.
 
-- **POST /items/** - Create a new item
-  - Request body: `{"id": int, "name": string, "description": string}`
-  - Response: Created item
+## Security
 
-- **GET /items/{item_id}** - Get a specific item by ID
-  - Response: Item details
-
-- **GET /items/** - Get all items
-  - Response: List of all items
-
-- **PUT /items/{item_id}** - Update an existing item
-  - Request body: `{"id": int, "name": string, "description": string}`
-  - Response: Updated item
-
-- **DELETE /items/{item_id}** - Delete an item
-  - Response: `{"message": "Item deleted successfully"}`
-
-## Example Usage
-
-### Create an Item
-
-```bash
-curl -X POST "http://localhost:8000/items/" -H "Content-Type: application/json" -d '{"id": 1, "name": "Example Item", "description": "This is an example item"}'
-```
-
-### Get an Item
-
-```bash
-curl "http://localhost:8000/items/1"
-```
-
-### Get All Items
-
-```bash
-curl "http://localhost:8000/items/"
-```
-
-### Update an Item
-
-```bash
-curl -X PUT "http://localhost:8000/items/1" -H "Content-Type: application/json" -d '{"id": 1, "name": "Updated Item", "description": "This item has been updated"}'
-```
-
-### Delete an Item
-
-```bash
-curl -X DELETE "http://localhost:8000/items/1"
-```
-
-## Error Handling
-
-The API includes basic error handling:
-
-- 400 Bad Request: When trying to create an item with an ID that already exists
-- 404 Not Found: When trying to read, update, or delete an item that doesn't exist
+- Passwords are hashed using bcrypt before storing
+- JWT tokens are used for authentication
+- CORS is enabled to allow frontend-backend communication
 
 ## Future Improvements
 
-- Add authentication and authorization
-- Implement a persistent database
-- Add input validation and more robust error handling
-- Implement pagination for the get all items endpoint
-- Add unit tests and integration tests
+- Add email verification for new users
+- Implement password reset functionality
+- Add more protected routes and user profile management
+- Replace in-memory user storage with a database
+- Implement refresh tokens for better security
+- Add input validation on the frontend
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
