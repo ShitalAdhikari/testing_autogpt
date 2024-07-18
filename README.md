@@ -4,14 +4,14 @@ This project implements a simple login page using NiceGUI for the frontend and F
 
 ## Dependencies
 
-- FastAPI (>=0.68.0, <0.100.0)
-- Uvicorn (>=0.15.0, <0.20.0)
-- NiceGUI (latest version)
-- Pydantic (>=1.8.2, <2.0.0)
-- bcrypt (>=3.2.0, <4.0.0)
+- FastAPI (0.95.2)
+- Uvicorn (0.22.0)
+- NiceGUI (1.3.3)
+- Pydantic (1.10.9)
+- bcrypt (4.0.1)
 - python-jose (3.3.0)
-- httpx (>=0.23.0, <0.25.0)
-- python-multipart (0.0.5)
+- httpx (0.24.1)
+- python-multipart (0.0.6)
 
 ## Installation
 
@@ -34,13 +34,31 @@ This project implements a simple login page using NiceGUI for the frontend and F
 
 ## Running the Application
 
-To run the application, use the following command:
+### Backend
+1. Navigate to the project directory.
+2. Run the following command:
+   ```
+   uvicorn backend:app --reload
+   ```
+3. The backend API will be available at `http://localhost:8000`.
 
-```
-python main.py
-```
+### Frontend
+1. Open a new terminal window.
+2. Navigate to the project directory.
+3. Run the following command:
+   ```
+   python frontend.py
+   ```
+4. The frontend will be available at `http://localhost:8080`.
 
-The application will be available at `http://localhost:8000`.
+### Combined Application
+To run both frontend and backend together:
+1. Navigate to the project directory.
+2. Run the following command:
+   ```
+   python main.py
+   ```
+3. The combined application will be available at `http://localhost:8000`.
 
 ## Features
 
