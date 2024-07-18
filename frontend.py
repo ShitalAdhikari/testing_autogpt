@@ -11,7 +11,7 @@ class LoginUI:
         async with httpx.AsyncClient() as client:
             try:
                 response = await client.post(
-                    'http://localhost:8000/token',
+                    'http://localhost:8000/api/token',
                     data={'username': self.username, 'password': self.password}
                 )
                 if response.status_code == 200:
@@ -37,4 +37,4 @@ def create_ui():
     login_ui.build()
 
 if __name__ == '__main__':
-    ui.run(create_ui)
+    ui.run(create_ui, port=8080)
