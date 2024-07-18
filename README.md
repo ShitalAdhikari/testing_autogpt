@@ -12,6 +12,7 @@ This project implements a simple login page using NiceGUI for the frontend and F
 - python-jose (3.3.0)
 - httpx (0.24.1)
 - python-multipart (0.0.6)
+- PyJWT (2.6.0)
 
 ## Installation
 
