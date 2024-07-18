@@ -13,6 +13,7 @@ This project implements a simple login page using NiceGUI for the frontend and F
 - httpx (0.24.1)
 - python-multipart (0.0.6)
 - PyJWT (2.6.0)
+- vbuild (0.8.2)
 
 ## Installation
 
@@ -86,7 +87,11 @@ The frontend is a simple login page created with NiceGUI. It communicates with t
 
 ## Known Issues
 
-There are some deprecation warnings related to the `vbuild` package, which is a dependency of NiceGUI. These warnings are due to the use of `pkgutil.find_loader`, which is deprecated in Python 3.12+. We are waiting for an update from the `vbuild` package maintainers to address this issue. In the meantime, these warnings do not affect the functionality of the application.
+There were previously some deprecation warnings related to the `vbuild` package, which is a dependency of NiceGUI. These warnings were due to the use of `pkgutil.find_loader`, which is deprecated in Python 3.12+.
+
+## Resolved Issues
+
+The deprecation warnings related to `pkgutil.find_loader` have been addressed by implementing a custom wrapper using `importlib.util.find_spec()`. This solution maintains compatibility with the vbuild package while eliminating the warnings.
 
 ## Future Improvements
 
@@ -96,7 +101,6 @@ There are some deprecation warnings related to the `vbuild` package, which is a 
 - Replace in-memory user storage with a database
 - Implement refresh tokens for better security
 - Add input validation on the frontend
-- Update dependencies to resolve deprecation warnings
 
 ## Contributing
 
