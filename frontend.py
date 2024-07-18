@@ -33,8 +33,5 @@ class LoginUI:
 
 login_ui = LoginUI()
 
-def create_ui(_=None):
+def create_ui():
     login_ui.build()
-
-if __name__ == '__main__':
-    ui.run(on_load=create_ui, port=8080)
