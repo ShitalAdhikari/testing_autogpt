@@ -4,14 +4,14 @@ This project implements a simple login page using NiceGUI for the frontend and F
 
 ## Dependencies
 
-- FastAPI
-- Uvicorn
-- NiceGUI
-- Pydantic
-- bcrypt
-- python-jose
-- httpx
-- python-multipart
+- FastAPI (>=0.68.0, <0.100.0)
+- Uvicorn (>=0.15.0, <0.20.0)
+- NiceGUI (latest version)
+- Pydantic (>=1.8.2, <2.0.0)
+- bcrypt (>=3.2.0, <4.0.0)
+- python-jose (3.3.0)
+- httpx (>=0.23.0, <0.25.0)
+- python-multipart (0.0.5)
 
 ## Installation
 
